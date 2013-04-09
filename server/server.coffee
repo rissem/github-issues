@@ -1,11 +1,9 @@
+Issues = new Meteor.Collection
+
 Meteor.setInterval ->
-  console.log "querying github"
-  #query github
-  #write to collection
-  #handle duplicates
+  user = Meteor.users.find().fetch()[0]
+  accessToken = user.services.github.accessToken
+  console.log "querying github with token", accessToken
+  response = Meteor.http.get "https://api.github.com/rissem/issues?access_token=#{accessToken}"
+  console.log response
 , 5*1000
-
-console.log Meteor.users.find().fetch()[0]
-
-Meteor.publish "stuff", ->
-  console.log @userId
