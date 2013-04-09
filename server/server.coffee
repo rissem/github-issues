@@ -1,5 +1,6 @@
 Issues = new Meteor.Collection
 
+#WIP
 Meteor.setInterval ->
   user = Meteor.users.find().fetch()[0]
   accessToken = user.services.github.accessToken
